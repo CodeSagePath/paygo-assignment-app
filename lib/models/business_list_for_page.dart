@@ -1,42 +1,35 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class BusinessTileData {
   final String businessName;
-  final String businessDescription;
   final String businessAddress;
-  final double price;
+  final String price;
+  final String distance;
   final String imageAssetPath;
 
   BusinessTileData({
     required this.businessName,
-    required this.businessDescription,
     required this.businessAddress,
     required this.price,
+    required this.distance,
     required this.imageAssetPath,
   });
 
-  factory BusinessTileData.fromFirestore(Map<String, dynamic> data) {
+  factory BusinessTileData.fromJson(Map<String, dynamic> json) {
     return BusinessTileData(
-      businessName: data['businessName'] ?? 'Test',
-      businessDescription: data['businessDescription'] ?? 'Test',
-      businessAddress: data['businessAddress'] ?? 'Test',
-      price: data['rating']?.toDouble() ?? 0.0,
-      imageAssetPath: data['imageUrl'] ?? '',
+      businessName: data['business_name'] ?? 'Test',
+      businessAddress: data['business_address'] ?? 'Test',
+      price: (data['price']) ?? 'Test',
+      distance: (data['distance']) ?? 'Test',
+      imageAssetPath: data['imageUrl'] ?? 'https://firebasestorage.googleapis.com/v0/b/paygo-assignment-752fe.appspot.com/o/background2.jpeg?alt=media&token=04e91770-47b7-44cd-b856-1df179c50009',
     );
   }
 
-  // Static list to hold business data
-  static List<BusinessTileData> businessList = [];
-
-  // Fetch data from Firestore and populate businessList
-  static Future<void> fetchBusinessData() async {
-    try {
-      final snapshot = await FirebaseFirestore.instance.collection('businesses').get();
-      businessList = snapshot.docs
-          .map((doc) => BusinessTileData.fromFirestore(doc.data()))
-          .toList();
-    } catch (e) {
-      print('Error fetching business data: $e');
-    }
+   Map<String, dynamic> toJson() {
+    return {
+      'businessName': businessName,
+      'businessAddress': businessAddress,
+      'price': price,
+      'distance': distance,
+      'imageUrl': imageAssetPath,
+    };
   }
 }

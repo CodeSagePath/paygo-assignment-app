@@ -28,44 +28,16 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  cloud_firestore: ^5.2.0
+  firebase_core: ^3.3.0
   flutter:
     sdk: flutter
-  http: ^1.0.0
-  cupertino_icons: ^1.0.2
-  flutter_native_splash: ^2.3.1
-  shared_preferences: ^2.1.2
-  fluttertoast: ^8.2.2
-  url_launcher: ^6.1.12
-  internet_popup: ^1.0.8+5
-  info_popup: ^4.3.1
-  sms_autodetect: ^1.0.9
-  # connectivity_plus: ^2.3.9
-  lottie: ^3.1.2
-  whatsapp_unilink: ^2.1.0
-  numberpicker: ^2.1.2
-  board_datetime_picker: ^2.1.0
-  time_range_picker: ^2.2.0
-  video_player: ^2.7.0
-  sliding_up_panel: any
-  sidebarx: ^0.17.1
-  google_nav_bar: ^5.0.6
-  shimmer: ^3.0.0
-  photo_view: ^0.15.0
-  flutter_staggered_grid_view: ^0.7.0
-  image_picker: ^1.0.2
-  image: ^4.0.17
-  chewie: ^1.7.0
-  latlng: ^2.0.7
   flutter_staggered_animations: ^1.1.1
-  package_info: ^2.0.2
-  google_fonts: ^6.2.1
-  qr_flutter: ^4.1.0
-  qr_code_scanner: ^1.0.1
-  share_plus: ^10.0.0
-  geolocator: ^12.0.0
+  flutter_staggered_grid_view: ^0.7.0
+  fluttertoast: ^8.2.6
   geocoding: ^3.0.0
-  firebase_core: ^3.3.0
-  cloud_firestore: ^5.2.0
+  geolocator: ^12.0.0
+  shimmer: ^3.0.0
 
 
 dev_dependencies:

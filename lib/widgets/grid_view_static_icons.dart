@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:paygo_app/models/category.dart';
 import 'package:paygo_app/screens/business_page.dart';
 import 'package:paygo_app/widgets/shimmer_loading_effect.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 // import '../screens/see_all_categories.dart';
 // import 'category_card.dart';

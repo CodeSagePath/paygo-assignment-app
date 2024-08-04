@@ -14,7 +14,14 @@ class BusinessPage extends StatefulWidget {
 class _BusinessPageState extends State<BusinessPage> {
   int _selectedIndex = 0;
   String _selectedCategory = 'Gym';
-  final List<String> _categories = ['Gym', 'Swimming', 'Cricket', 'Yoga', 'Basketball', 'Badminton'];
+  final List<String> _categories = [
+    'Gym',
+    'Swimming',
+    'Cricket',
+    'Yoga',
+    'Basketball',
+    'Badminton'
+  ];
 
   @override
   void initState() {
@@ -94,9 +101,11 @@ class _BusinessPageState extends State<BusinessPage> {
                               });
                             },
                             child: Container(
-                              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 16.0, vertical: 8.0),
                               decoration: BoxDecoration(
-                                color: isSelected ? Colors.purple : Colors.white,
+                                color:
+                                    isSelected ? Colors.purple : Colors.white,
                                 border: Border.all(color: Colors.grey),
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
@@ -104,7 +113,9 @@ class _BusinessPageState extends State<BusinessPage> {
                                 child: Text(
                                   category,
                                   style: TextStyle(
-                                    color: isSelected ? Colors.white : Colors.black,
+                                    color: isSelected
+                                        ? Colors.white
+                                        : Colors.black,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -119,9 +130,11 @@ class _BusinessPageState extends State<BusinessPage> {
                   Column(
                     children: [
                       ListView.builder(
-                        physics: NeverScrollableScrollPhysics(), // Prevents nested scrolling issues
+                        physics:
+                            NeverScrollableScrollPhysics(), // Prevents nested scrolling issues
                         shrinkWrap: true,
-                        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: screenWidth * 0.04),
                         itemCount: businessList.length,
                         itemBuilder: (context, index) {
                           BusinessTileData business = businessList[index];

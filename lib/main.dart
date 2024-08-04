@@ -1,8 +1,8 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:paygo_app/firebase_options.dart';
 import 'package:paygo_app/screens/bottom_navigation_bar.dart';
 import 'package:paygo_app/screens/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:paygo_app/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +24,6 @@ class _AppInitializerState extends State<AppInitializer> {
   @override
   void initState() {
     super.initState();
-    // Additional initialization if needed
   }
 
   @override

@@ -37,7 +37,7 @@ class BusinessTile extends StatelessWidget {
                       topRight: Radius.circular(12),
                       topLeft: Radius.circular(12),
                     ),
-                    child: Image.asset(
+                    child: Image.network(
                       business.imageAssetPath,
                       fit: BoxFit.cover,
                       width: screenWidth,
@@ -70,15 +70,6 @@ class BusinessTile extends StatelessWidget {
                                   fontSize: screenWidth * 0.07,
                                   color: Colors.black.withOpacity(0.7),
                                   fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              SizedBox(height: screenHeight * 0.005),
-                              Text(
-                                business
-                                    .businessDescription, // Displaying description
-                                style: TextStyle(
-                                  fontSize: screenWidth * 0.04,
-                                  color: Colors.black.withOpacity(0.7),
                                 ),
                               ),
                               SizedBox(height: screenHeight * 0.005),
