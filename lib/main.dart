@@ -2,12 +2,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:paygo_app/firebase_options.dart';
 import 'package:paygo_app/screens/bottom_navigation_bar.dart';
 import 'package:paygo_app/screens/home_page.dart';
-import 'package:paygo_app/utils/routes.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  // Initialize Firebase with the default options
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -25,6 +24,7 @@ class _AppInitializerState extends State<AppInitializer> {
   @override
   void initState() {
     super.initState();
+    // Additional initialization if needed
   }
 
   @override
@@ -34,8 +34,9 @@ class _AppInitializerState extends State<AppInitializer> {
       title: 'Welcome to PayGo',
       home: const CustomBottomNavBar(),
       routes: {
-        bottomNavigationBar: (context) => const CustomBottomNavBar(),
-        homeView: (context) => const Home(),
+        // Ensure route names are correctly defined
+        '/bottomNavigationBar': (context) => const CustomBottomNavBar(),
+        '/homeView': (context) => const Home(),
       },
     );
   }
@@ -45,5 +46,5 @@ class CustomPageRoute extends MaterialPageRoute {
   @override
   Duration get transitionDuration => const Duration(milliseconds: 1000);
 
-  CustomPageRoute({builder}) : super(builder: builder);
+  CustomPageRoute({required WidgetBuilder builder}) : super(builder: builder);
 }
