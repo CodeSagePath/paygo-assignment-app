@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppColors{
   static const Color primaryColor = Color(0xFFBBDEFB);
-  static const Color appbackgroundColor = Color(0xFFe0e0e0);
+  static const Color appbackgroundColor = Colors.white;
   static const Color appbarColor =  Color(0xFFe0e0e0);
   static const Color headingColor1 = Colors.black54;
   static const Color textColor1= Color(0xFF989acd);
@@ -15,6 +15,7 @@ class AppColors{
 
   static const Color purple =  Color.fromRGBO(126, 58, 242, 1);
   static const Color purpleBackground = Color.fromRGBO(241,231,255, 1);
+  static const Color white = Colors.white;
 
   // static final Color buttonBackground = Color(0xFFf1f1f9);
 
