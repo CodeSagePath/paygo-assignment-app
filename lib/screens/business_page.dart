@@ -3,7 +3,6 @@ import 'package:paygo_app/constants/colors.dart';
 import 'package:paygo_app/models/business_list_for_page.dart';
 import 'package:paygo_app/widgets/app_bar.dart';
 import 'package:paygo_app/widgets/business_tiles.dart';
-import 'package:paygo_app/models/category.dart'; // Ensure the path is correct
 
 class BusinessPage extends StatefulWidget {
   const BusinessPage({super.key});
