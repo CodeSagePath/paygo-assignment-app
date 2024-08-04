@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "630320611531",
+    "project_id": "paygo-assignment-752fe",
+    "storage_bucket": "paygo-assignment-752fe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630320611531:android:913e2fcfb0e9d45ad59b4e",
+        "android_client_info": {
+          "package_name": "com.example.paygo_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9Huwsxy474OGooguddVkBp-v2NAkX5OI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630320611531:android:280f72d69892a82ed59b4e",
+        "android_client_info": {
+          "package_name": "com.example.yourapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9Huwsxy474OGooguddVkBp-v2NAkX5OI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,144 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:paygo_app/constants/colors.dart';
+import 'package:paygo_app/models/category.dart';
+import 'package:paygo_app/widgets/app_bar.dart';
 import 'business_page.dart';
 import 'home_page.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:geocoding/geocoding.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
-  const CustomBottomNavBar({
-    super.key,
-  });
+  const CustomBottomNavBar({super.key});
 
   @override
-  State<CustomBottomNavBar> createState() => _CustomBottomNavBar();
+  State<CustomBottomNavBar> createState() => _CustomBottomNavBarState();
 }
 
-class _CustomBottomNavBar extends State<CustomBottomNavBar> {
+class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
   int _selectedIndex = 0;
-  final List<Widget> pages = [
-    const Home(),
-    const BusinessPage(),
-    // const Home(),
-  ];
-
-  PageController _pageController = PageController(initialPage: 0);
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      _pageController.animateToPage(
-        index,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    });
-  }
-
-  String _address1 = 'Detecting location...';
-  String _address2 = 'Detecting location...';
+  late final Category category;
+  late final List<Widget> pages;
   @override
   void initState() {
     super.initState();
-    _fetchAddress();
-  }
-
-  Future<void> _fetchAddress() async {
-    String address1 = await _getCurrentAddress1();
-    String address2 = await _getCurrentAddress2();
-    setState(() {
-      _address1 = address1;
-      _address2 = address2;
-    });
-  }
-
-  Future<String> _getCurrentAddress1() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    // Test if location services are enabled.
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      return 'Location services are disabled.';
-    }
-
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return 'Location permissions are denied';
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      return 'Location permissions are permanently denied, we cannot request permissions.';
-    }
-
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-    List<Placemark> placemarks =
-        await placemarkFromCoordinates(position.latitude, position.longitude);
-    Placemark place = placemarks[0];
-
-    return '${place.subAdministrativeArea}, ${place.street}, ${place.locality}, ${place.administrativeArea}, ${place.postalCode}';
-  }
-
-  Future<String> _getCurrentAddress2() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    // Test if location services are enabled.
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      return 'Location services are disabled.';
-    }
-
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return 'Location permissions are denied';
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      return 'Location permissions are permanently denied, we cannot request permissions.';
-    }
-
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-    List<Placemark> placemarks =
-        await placemarkFromCoordinates(position.latitude, position.longitude);
-    Placemark place = placemarks[0];
-
-    return '${place.subLocality}';
-  }
-
-  Future<String> _getCurrentLocation() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    // Test if location services are enabled.
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      return 'Location services are disabled.';
-    }
-
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return 'Location permissions are denied';
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      return 'Location permissions are permanently denied, we cannot request permissions.';
-    }
-
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-    return '${position.latitude}, ${position.longitude}';
+    category = categoryList[0]; // Initialize category
+    pages = [
+      const Home(),
+      const BusinessPage(),
+    ];
   }
 
   String truncateWithEllipsis(int cutoff, String myString) {
@@ -158,13 +43,13 @@ class _CustomBottomNavBar extends State<CustomBottomNavBar> {
             Icon(
               icon,
               color: isSelected ? AppColors.purple : Colors.grey,
-              size: 24.0, // Adjust icon size if necessary
+              size: 24.0,
             ),
             Text(
               label,
               style: TextStyle(
                 color: isSelected ? AppColors.purple : Colors.grey,
-                fontSize: 10.0, // Adjust text size to fit
+                fontSize: 10.0,
               ),
             ),
           ],
@@ -176,85 +61,14 @@ class _CustomBottomNavBar extends State<CustomBottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.purpleBackground,
-        elevation: 0.5,
-        title: SizedBox(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        SizedBox(
-                          child: Text(
-                            _address2,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        const Icon(Icons.keyboard_arrow_down_outlined),
-                      ],
-                    ),
-                    const Row(
-                      children: [
-                        Icon(Icons.star, color: Colors.orange),
-                        SizedBox(width: 4),
-                        Text(
-                          'Points',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                SizedBox(height: 4),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      truncateWithEllipsis(28, _address1),
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.left,
-                    ),
-                    SizedBox(height: 4),
-                    Text(
-                      '3725',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+      appBar: const CustomAppBar(),
       body: PageView(
-        controller: _pageController,
-        children: pages,
         onPageChanged: (index) {
           setState(() {
             _selectedIndex = index;
           });
         },
+        children: pages,
       ),
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),

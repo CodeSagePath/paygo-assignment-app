@@ -1,12 +1,16 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:paygo_app/firebase_options.dart';
 import 'package:paygo_app/screens/bottom_navigation_bar.dart';
 import 'package:paygo_app/screens/home_page.dart';
-import 'package:paygo_app/screens/register_new_user.dart';
 import 'package:paygo_app/utils/routes.dart';
-import 'package:paygo_app/screens/add_product.dart';
-import 'package:paygo_app/screens/register_view.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const AppInitializer());
 }
 
@@ -18,7 +22,6 @@ class AppInitializer extends StatefulWidget {
 }
 
 class _AppInitializerState extends State<AppInitializer> {
-
   @override
   void initState() {
     super.initState();
@@ -31,11 +34,8 @@ class _AppInitializerState extends State<AppInitializer> {
       title: 'Welcome to PayGo',
       home: const CustomBottomNavBar(),
       routes: {
-        registerNewUser: (context) => RegisterUserPage(),
         bottomNavigationBar: (context) => const CustomBottomNavBar(),
         homeView: (context) => const Home(),
-        registerView: (context) => const RegisterView(),
-        addProduct: (context) => const AddProduct(),
       },
     );
   }

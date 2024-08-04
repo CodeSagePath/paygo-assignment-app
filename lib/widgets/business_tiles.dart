@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paygo_app/constants/colors.dart';
-import 'package:paygo_app/models/business_list_for_page.dart'; 
+import 'package:paygo_app/models/business_list_for_page.dart';
 
 class BusinessTile extends StatelessWidget {
   final BusinessTileData business;
@@ -74,7 +74,8 @@ class BusinessTile extends StatelessWidget {
                               ),
                               SizedBox(height: screenHeight * 0.005),
                               Text(
-                                business.businessDescription, // Displaying description
+                                business
+                                    .businessDescription, // Displaying description
                                 style: TextStyle(
                                   fontSize: screenWidth * 0.04,
                                   color: Colors.black.withOpacity(0.7),
